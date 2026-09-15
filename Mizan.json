@@ -1,0 +1,33 @@
+{
+    "author": "MIZAN",
+    "autoRestart": true,
+    "accpetPending": false,
+    "developermode": false,
+    "language": "en",
+    "notification": false,
+    "approval": false,
+    "saveState": true,
+    "banMsg": false,
+    "adminOnlyMsg": false,
+    "BOTNAME": "MIZAN-BOT",
+    "PREFIX": ".",
+    "EMOJI": "🤬",
+    "OPERATOR": [
+        "61590768786047",
+        "100000486903904"
+    ],
+    "ADMINBOT": [
+        "61590768786047",
+        "61555704213495",
+        "10007719"
+    ],
+    "OWNER": [
+        "100000494801296"
+    ],
+    "APPROVED": [],
+    "disabledcmds": [],
+    "disabledevents": [],
+    "note": "make sure that the bot name you entered is all lowercase",
+    "notice": "dont cng author name and owner uid. otherwise bot not working",
+    "notice2": "if you run use email and password, use saveState false; otherwise, use saveState true"
+}

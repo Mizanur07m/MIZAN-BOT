@@ -1,0 +1,10 @@
+{
+  "version": "20.20.0",
+  "files": [
+    "package.json",
+    "scripts/commands/song.js",
+    "scripts/commands/video.js",
+    "scripts/events/join.js"
+  ],
+  "reinstallDependencies": true
+}

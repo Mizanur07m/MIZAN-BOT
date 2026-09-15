@@ -1,0 +1,78 @@
+const moment = require("moment-timezone");
+const path = require("path");
+const fs2 = require("fs");
+
+function getAdminFbLink() {
+  try {
+    const config = JSON.parse(
+      fs2.readFileSync(path.join(__dirname, "../../Mizan.json"), "utf8")
+    );
+    const uid = config.ADMINBOT?.[0] || config.OWNER?.[0] || null;
+    return uid ? `fb.com/${uid}` : "fb.com/100003661522127";
+  } catch {
+    return "fb.com/100003661522127";
+  }
+}
+
+module.exports.config = {
+  name: "admin",
+  version: "1.0.2",
+  credits: "Joy",
+  permission: 0,
+  description: "Shows admin personal information",
+  category: "info",
+  prefix: true,
+  cooldowns: 5
+};
+
+module.exports.run = async function ({ api, event }) {
+  try {
+    const fs = global.nodemodule["fs-extra"];
+    const request = global.nodemodule["request"];
+
+    const currentTime = moment
+      .tz("Asia/Dhaka")
+      .format("DD MMM YYYY, hh:mm:ss A");
+
+    const imageUrl =
+      "https://raw.githubusercontent.com/Mizanur07m/Mizan-/main/Mizan404.png";
+
+    const cacheDir = path.join(__dirname, "cache");
+    const imgPath = path.join(cacheDir, "admin_avatar.png");
+
+    if (!fs.existsSync(cacheDir)) fs.mkdirSync(cacheDir, { recursive: true });
+
+    const infoText =
+`╭╼|━━━━━━━━━━━━━━|╾╮
+👑 𝗔𝗱𝗺𝗶𝗻: 𝙈𝘿 𝙈𝙄𝙕𝘼𝙉𝙐𝙍 𝙍𝘼𝙃𝙈𝘼𝙉
+🌐 𝗡𝗮𝗺𝗲: 𝙈𝙞𝙯𝙖𝙣 𝘼𝙝𝙢𝙚𝙙
+🕋 𝗥𝗲𝗹𝗶𝗴𝗶𝗼𝗻: Islam | 🚹 𝗚𝗲𝗻𝗱𝗲𝗿: Male
+🎂 𝗔𝗴𝗲: 19+ | 🎓 𝗪𝗼𝗿𝗸: Student
+🏠 𝗙𝗿𝗼𝗺: 𝙐𝙡𝙡𝙖𝙥𝙖𝙧𝙖, 𝙨𝙞𝙧𝙖𝙟𝙜𝙝𝙤𝙣𝙟
+📍 𝗖𝘂𝗿𝗿𝗲𝗻𝘁: Konabarii, Gazipur
+💘 𝗦𝘁𝗮𝘁𝘂𝘀: Married
+📧 𝗘𝗺𝗮𝗶𝗹: bdidnew92@gmail.com
+📞 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽: +8801794385912
+✈️ 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺: t.me/ownerxr
+🔗 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸: ${getAdminFbLink()}
+⏰ 𝗧𝗶𝗺𝗲: ${currentTime}
+╰╼|━━━━━━━━━━━━━━|╾╯`;
+
+    const sendMsg = () => {
+      api.sendMessage(
+        { body: infoText, attachment: fs.createReadStream(imgPath) },
+        event.threadID,
+        () => { try { fs.unlinkSync(imgPath); } catch (_) {} }
+      );
+    };
+
+    request(imageUrl)
+      .pipe(fs.createWriteStream(imgPath))
+      .on("close", sendMsg)
+      .on("error", () => api.sendMessage(infoText, event.threadID));
+
+  } catch (err) {
+    api.sendMessage("❌ Admin command error!", event.threadID);
+    console.error(err);
+  }
+};
