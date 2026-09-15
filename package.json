@@ -2,7 +2,7 @@
   "name": "MIZAN",
   "version": "20.20.0",
   "description": "MIRAI BOT NEW VERSION COOKIES MIZAN-BOT",
-  "main": "Mizan/catalogs/Mizana.js",
+  "main": "Joy/catalogs/joya.js",
   "author": "MIZAN",
   "license": "MIT",
   "engines": {
@@ -10,11 +10,11 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "start": "node --trace-warnings --use_strict --async-stack-traces Mizan/catalogs/Mizana.js",
-    "dev": "nodemon Mizan/catalogs/Mizana.js",
+    "start": "node --trace-warnings --use_strict --async-stack-traces Joy/catalogs/joya.js",
+    "dev": "nodemon Joy/catalogs/joya.js",
     "login": "node login",
     "test": "node --trace-warnings --use_strict --async-stack-traces main",
-    "pm2": "pm2 start Mizan/catalogs/Mizana.js --name MIZAN-BOT",
+    "pm2": "pm2 start Joy/catalogs/joya.js --name MIZAN-BOT",
     "pm2-stop": "pm2 stop MIZAN-BOT",
     "pm2-restart": "pm2 restart MIZAN-BOT",
     "pm2-logs": "pm2 logs MIZAN-BOT",
